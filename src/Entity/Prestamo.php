@@ -26,16 +26,17 @@ class Prestamo
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'prestamos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Libro $libro = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $relation = null;
 
+    // ✅ CORRECCIÓN: Cambiar de 'libro' a 'User'
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?libro $usuario = null;
+    private ?User $usuario = null;
 
     public function getId(): ?int
     {
@@ -114,12 +115,13 @@ class Prestamo
         return $this;
     }
 
-    public function getUsuario(): ?libro
+    // ✅ CORRECCIÓN: Métodos getter y setter para User
+    public function getUsuario(): ?User
     {
         return $this->usuario;
     }
 
-    public function setUsuario(?libro $usuario): static
+    public function setUsuario(?User $usuario): static
     {
         $this->usuario = $usuario;
 

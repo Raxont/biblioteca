@@ -3,32 +3,31 @@
 {% block title %}Prestamo index{% endblock %}
 
 {% block body %}
-    <h1>Prestamo index</h1>
+    <h1>Prestamos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>FechaPrestamo</th>
-                <th>FechaDevolucion</th>
+
+                <th>Fecha Prestamo</th>
+                <th>Fecha Devolucion</th>
                 <th>Estado</th>
                 <th>Observaciones</th>
-                <th>Relation</th>
-                <th>actions</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for prestamo in prestamos %}
             <tr>
-                <td>{{ prestamo.id }}</td>
                 <td>{{ prestamo.fechaPrestamo ? prestamo.fechaPrestamo|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ prestamo.fechaDevolucion ? prestamo.fechaDevolucion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ prestamo.estado }}</td>
                 <td>{{ prestamo.observaciones }}</td>
                 <td>{{ prestamo.relation }}</td>
                 <td>
-                    <a href="{{ path('app_prestamo_show', {'id': prestamo.id}) }}">show</a>
-                    <a href="{{ path('app_prestamo_edit', {'id': prestamo.id}) }}">edit</a>
+                    <a href="{{ path('app_prestamo_show', {'id': prestamo.id}) }}">Ver</a>
+                    <a href="{{ path('app_prestamo_edit', {'id': prestamo.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_prestamo_new') }}">Create new</a>
+    <a href="{{ path('app_prestamo_new') }}">Crear Nuevo</a>
 {% endblock %}

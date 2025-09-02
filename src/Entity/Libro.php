@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-
 #[ORM\Entity(repositoryClass: LibroRepository::class)]
 class Libro
 {
@@ -36,6 +35,7 @@ class Libro
     #[ORM\JoinColumn(nullable: false)]
     private ?Autor $autor = null;
 
+    // ✅ CORRECCIÓN: Agregar inversedBy="libro"
     #[ORM\OneToMany(mappedBy: 'libro', targetEntity: Prestamo::class, orphanRemoval: true)]
     private Collection $prestamos;
 
@@ -53,7 +53,6 @@ class Libro
     {
         return $this->disponible ? 'Disponible' : 'No Disponible';
     }
-
 
     public function getId(): ?int
     {
@@ -128,6 +127,36 @@ class Libro
     public function setAutor(?Autor $autor): static
     {
         $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Prestamo>
+     */
+    public function getPrestamos(): Collection
+    {
+        return $this->prestamos;
+    }
+
+    public function addPrestamo(Prestamo $prestamo): static
+    {
+        if (!$this->prestamos->contains($prestamo)) {
+            $this->prestamos->add($prestamo);
+            $prestamo->setLibro($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestamo(Prestamo $prestamo): static
+    {
+        if ($this->prestamos->removeElement($prestamo)) {
+            // set the owning side to null (unless already changed)
+            if ($prestamo->getLibro() === $this) {
+                $prestamo->setLibro(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - Sistema Biblioteca{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </h1>
+        </div>
+    </div>
+
+    <!-- Estadísticas principales -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title">Total Libros</h5>
+                            <h2 class="mb-0">{{ total_libros }}</h2>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-book fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('app_libro_index') }}" class="text-white text-decoration-none">
+                        Ver libros <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title">Libros Disponibles</h5>
+                            <h2 class="mb-0">{{ libros_disponibles }}</h2>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>Listos para préstamo</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title">Total Autores</h5>
+                            <h2 class="mb-0">{{ total_autores }}</h2>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('app_autor_index') }}" class="text-white text-decoration-none">
+                        Ver autores <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title">Préstamos Activos</h5>
+                            <h2 class="mb-0">{{ prestamos_activos }}</h2>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-handshake fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('app_prestamo_index') }}" class="text-white text-decoration-none">
+                        Ver préstamos <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acciones rápidas -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3><i class="fas fa-bolt"></i> Acciones Rápidas</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Nuevo Libro</h5>
+                    <p class="card-text">Agregar un nuevo libro al sistema</p>
+                    <a href="{{ path('app_libro_new') }}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Libro
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-plus fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Nuevo Autor</h5>
+                    <p class="card-text">Registrar un nuevo autor</p>
+                    <a href="{{ path('app_autor_new') }}" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Agregar Autor
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-hand-holding fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Nuevo Préstamo</h5>
+                    <p class="card-text">Registrar un nuevo préstamo</p>
+                    <a href="{{ path('app_prestamo_new') }}" class="btn btn-warning">
+                        <i class="fas fa-plus"></i> Nuevo Préstamo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

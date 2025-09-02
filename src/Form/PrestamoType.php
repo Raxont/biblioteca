@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Libro;
 use App\Entity\Prestamo;
-use App\Entity\libro;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,11 +22,11 @@ class PrestamoType extends AbstractType
             ->add('relation')
             ->add('libro', EntityType::class, [
                 'class' => Libro::class,
-                'choice_label' => 'id',
+                'choice_label' => 'titulo',
             ])
             ->add('usuario', EntityType::class, [
-                'class' => libro::class,
-                'choice_label' => 'id',
+                'class' => User::class, 
+                'choice_label' => 'username', 
             ])
         ;
     }

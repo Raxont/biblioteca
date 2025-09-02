@@ -31,8 +31,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/libro, roles: ROLE_USER }     # Solo usuarios logueados pueden gestionar libros
+        - { path: ^/autor, roles: ROLE_USER }     # Solo usuarios logueados pueden gestionar autores  
+        - { path: ^/prestamo, roles: ROLE_USER }  # Solo usuarios logueados pueden hacer préstamos
 
 when@test:
     security:
